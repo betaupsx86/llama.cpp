@@ -44,8 +44,6 @@ namespace console {
     static display_t current_display  = reset;
 
     static FILE*     out              = stdout;
-    HANDLE hFile = INVALID_HANDLE_VALUE;
-
 
 #if defined (_WIN32)
     static void*     hConsole;

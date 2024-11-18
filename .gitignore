@@ -133,6 +133,3 @@ poetry.toml
 
 # Test models for lora adapters
 /lora-tests
-
-/vcpkg_installed
-/examples/skyllama/vcpkg_installed
