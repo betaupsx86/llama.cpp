@@ -3,6 +3,7 @@
 *.a
 *.bat
 *.bin
+*.d
 *.dll
 *.dot
 *.etag
@@ -134,5 +135,6 @@ poetry.toml
 # Test models for lora adapters
 /lora-tests
 
-/vcpkg_installed
-/examples/skyllama/vcpkg_installed
+# Local scripts
+/run-vim.sh
+/run-chat.sh
