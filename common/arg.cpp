@@ -298,35 +298,36 @@ static void common_params_print_usage(common_params_context & ctx_arg) {
 }
 
 bool common_params_parse(int argc, char ** argv, common_params & params, llama_example ex, void(*print_usage)(int, char **)) {
+    return true;
     auto ctx_arg = common_params_parser_init(params, ex, print_usage);
-    const common_params params_org = ctx_arg.params; // the example can modify the default params
-
-    try {
-        if (!common_params_parse_ex(argc, argv, ctx_arg)) {
-            ctx_arg.params = params_org;
-            return false;
-        }
-        if (ctx_arg.params.usage) {
-            common_params_print_usage(ctx_arg);
-            if (ctx_arg.print_usage) {
-                ctx_arg.print_usage(argc, argv);
-            }
-            exit(0);
-        }
-    } catch (const std::invalid_argument & ex) {
-        fprintf(stderr, "%s\n", ex.what());
-        ctx_arg.params = params_org;
-        return false;
-    }
+    //const common_params params_org = ctx_arg.params; // the example can modify the default params
+    //try {
+    //    if (!common_params_parse_ex(argc, argv, ctx_arg)) {
+    //        ctx_arg.params = params_org;
+    //        return false;
+    //    }
+    //    if (ctx_arg.params.usage) {
+    //        common_params_print_usage(ctx_arg);
+    //        if (ctx_arg.print_usage) {
+    //            ctx_arg.print_usage(argc, argv);
+    //        }
+    //        exit(0);
+    //    }
+    //} catch (const std::invalid_argument & ex) {
+    //    fprintf(stderr, "%s\n", ex.what());
+    //    ctx_arg.params = params_org;
+    //    return false;
+    //}
 
     return true;
 }
 
 common_params_context common_params_parser_init(common_params & params, llama_example ex, void(*print_usage)(int, char **)) {
     common_params_context ctx_arg(params);
+    return ctx_arg;
+
     ctx_arg.print_usage = print_usage;
     ctx_arg.ex          = ex;
-
     std::string sampler_type_chars;
     std::string sampler_type_names;
     for (const auto & sampler : params.sparams.samplers) {
